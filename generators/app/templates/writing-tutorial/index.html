@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html><head><title>Writing Your Own Yeoman Generator | Yeoman</title><meta http-equiv="Content-Type" content="text/html;charset=utf-8"/><link rel="canonical" href="http://archive.is/udrQX"/><style type="text/css">@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:400;
+src: url('d85998ba39ab73abeaa16a1ee83a8ebe7c2cb6b8.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:400;
+src: url('6e561c4644830d3103068b08bc88d17ad51af7a7.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:400;
+src: url('e4626f5f9e7226b2f04d9cd08d87a95e4de40dd6.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:400;
+src: url('28c3d549d1e9f38fcaa80c017b483a6c861128c9.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:400;
+src: url('ada83c7e3a067b9f6284bda96cfa62b99f1b658a.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:400;
+src: url('948194684f21fa6c6b09cbc6639ea5f8c145c891.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:400;
+src: url('940b859e4f02bd3e7cf7b6ce245c197b5470302a.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:700;
+src: url('8cc10a914dbfba6560014fa3eb274b8c96171a72.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:700;
+src: url('e0c479ba9af76d7b8592e4488f3ac0e7f6c7bf8d.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:700;
+src: url('ef76276398a44ab82fa94931fe3cd73b23efe9f8.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:700;
+src: url('3aa831883528474efb015cb48f892c85fda23dd0.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:700;
+src: url('cb76a9888b43300c29ba4612bfa633921e5d278a.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:700;
+src: url('8ec616b7f5e1e2fccef525d06b105d2227606615.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:normal;
+font-weight:700;
+src: url('24f9df68c500f7bbd1cb1c632de59936aa85b2e0.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:400;
+src: url('c7b9e04a4bf2ed608c7bcf100fdc2c34bfdc9f06.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:400;
+src: url('caf4615ba343fcf7c71866ab1075bf2f19d8a17f.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:400;
+src: url('13be745f695de6182223b3aa0c520dfd050528dd.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:400;
+src: url('f6378c8aac2e2233fc022d71dd53b529434f1475.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:400;
+src: url('92a69385897f585488eb90bc740bdfcb4c5f33b7.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:400;
+src: url('adec7174494a185d5c46683ab57f21dc6a695af7.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:400;
+src: url('3224a99c75e0d2daf7f78308d0a5682fbd4b96f1.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:700;
+src: url('4338b04c34d1892fd9df10e4edbd6a8b62ad8d3e.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:700;
+src: url('40e6e1e92d83d372b7bf17591289c8d9a7eb7ef7.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:700;
+src: url('64d6ccfdd32a657f5fccafc3fdd93a834f935b6f.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:700;
+src: url('ab6e6c76f4ce06c6c19fea4f1ed187ac0af15f7c.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:700;
+src: url('cc4abb99171644305497410c1e631805f3e249a9.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:700;
+src: url('751bd11d2178ba7323931232f64aa4ebc69c9153.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:Roboto;
+font-style:italic;
+font-weight:700;
+src: url('b46c1bb35398debf4d31234607f8f3e5924d6f63.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:400;
+src: url('d727a50544293ab9ccbeb13be6d2531c929462f3.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:400;
+src: url('5b6856b5b2d8a9f1e06c5d48a0f502571c32a0b7.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:400;
+src: url('fcad4197d700d9e93d02c9cd76736fe81a6beb81.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:400;
+src: url('9874d8d16b685d684227e9d5e9d716f56dae8a29.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:400;
+src: url('4d273ea1f63957543bacfa669e542ae19e6ea7a0.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:400;
+src: url('76e2f04f91e0cee72ef7f888d4566434db11a3a8.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:400;
+src: url('665c20841fa7eb68244cb1e1720719f5997de0a2.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:700;
+src: url('656e32ae5686a170d044b2fa1736ed153b93ec75.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:700;
+src: url('d27d86f787f3eb979c81a31ac0e3fa47ff277c45.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:700;
+src: url('cb063c77b39e5dd9a151be2439a4ec1f7eec79c0.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:700;
+src: url('046e3766bfb1ec54d62783df4fd9d97c45a49e51.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:700;
+src: url('094eb543bb41c16754be069561887533e357b18a.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:700;
+src: url('10a38efc8020476f19a00446d237c01cce5327f0.woff') format(woff);
+unicode-range:;
+}
+@font-face {
+font-family:'Roboto Slab';
+font-style:normal;
+font-weight:700;
+src: url('7bb46632fb85625750d8b64112980ca2335d8369.woff') format(woff);
+unicode-range:;
+}
+</style></head><body style="margin:0;background-color:white;width:1024px"><div class="html1" style="width: 1024px;text-align: left;overflow-x: auto;overflow-y: auto; background-color: rgba(0, 0, 0, 0);position: relative;min-height: 6759px;; z-index: 0"><div class="html" style="text-align:left;color:rgb(34, 34, 34);font-size:1em;line-height:1.4;font-family:Roboto, sans-serif;overflow-x:visible;overflow-y:visible;"><div class="body" style="vertical-align:bottom;min-height:768px;color:rgb(34, 34, 34);text-align:left;overflow-x:visible;overflow-y:visible;margin: 0px; "><header style="text-align:left;display:block;position:absolute;top:0px;left:0px;right:0px;background-color: rgb(31, 31, 31); z-index:12;"><div style="text-align:left;max-width:1200px;position:relative;margin: 0px auto; "><div style="text-align:left;position:absolute;top:0px;left:0px;z-index:12;width:100%;height:3em;background-color: rgb(31, 31, 31); "><h1 style="text-align:left;font-size:2em;font-family:'Roboto Slab', serif;position:absolute;left:0.3em;line-height:normal;top:0.4em;width:4.5em;margin: 0px; padding: 0px; "><a href="https://archive.is/o/udrQX/yeoman.io/" style="text-align:left;cursor:pointer;"><span style="display:block;position:absolute;background-image:url('c9d5efb1f53cac566c33f7d88baedca7b4f85324.png');background-color:transparent;background-size:auto 100%;top:-1em;left:0px;width:3.5em;height:3.5em;background-repeat:no-repeat"></span><img alt="Yeoman" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAAWCAMAAACysiPzAAAAM1BMVEUAAAD///////////////////////////////////////////////////////////////+3leKCAAAAEHRSTlMAv4BAYJ/vII/PEDDfr1BwhM4zUwAAAqtJREFUWMO1mN2SgyAMhQ2g/Knb93/aNdRygKSzzDibGysScj4SKLoQLCyXBYLlZXGkm1saOwO93kbhRLPDMIqZ+yla2mhm7J5F4F7r8oKVMalpsFe4l24IlMzWPdlMKu3wjRqH/fRHUxfNf+sPkk7rY5C8i2fbCVkDNSz+AbIKEJCoIOayg38FU3o4E/ju4HZ/+V+Xlcc1je3Q5sooe3CWzYUdsW5fNhRXL5kH69RyQ1RT4utgIHFXG3XDcA9qOddxMmzbQBUkl9KxbWd2R3erF1cW2YBizin0aFlxw4zgLkWIDxw4TYLAD7ZyiuCrFlfUQODuiEOqIBEkAIGl7fPY8YT4ZQ7kVJcy1VCYxCwLSwfxJRm5pkQIWUECEFje3tGyjCpBwmcXPPBk0HI0vmHE9VewLSggGHJ9XzQhIBEgyISvmRn8f2y1Jl1bLSJROG3sgwcYUnZWBSIW3ZOx6yAgESBYGywhSH9YX+9YIWIo38ROW1euP5wxoQCMti4VFQQkABFJLSGmQSzuxBKwbezznmcUVtJBbBXA8LsKAhIBgq2LN6x/AFlQXO/fDgrkPmGLwUWAgEQfxqMCFH/YdGnBF8VVs6MpcOMZIalCQPJ9PmiZAsFijxOLndfFWz6QVAW7OAmpQkDyDISdaW77hS+VSkGRQYGWEKREFQKS5yA1Mv35h2hRt7WwNJC0s/Key+hCQPIYZPKIAt9SXEWrlyC1xYyV5lUhIImPQeYPjRaJiqWwBAg23DSW2qoLAckwjL+P5ztfMQv6MZ6Bp47x8LWluNhIO39zw8EPEZ292eMW5NvBBpKv/xW2T7dmVB0nXqxYTr334xuReJ2T3rYXaJCT5yDzr7qIHe8fz0F6EvluL78WONItTH18gLk7yCG+GoiGLL0zBGofIPj6C8rzV+1pmkROAAAAAElFTkSuQmCC" style="text-align:left;vertical-align:middle;max-width:100%;margin-left:3.6em;border-width: 0px; border-style: none; border-color: white; "/></a></h1><button style="font-family:sans-serif;font-size:100%;vertical-align:baseline;line-height:normal;cursor:pointer;-webkit-appearance:button;color:rgb(34, 34, 34);position:absolute;z-index:2;top:0px;right:0px;width:3em;height:3em;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAQAQMAAADZKEboAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABNJREFUCNdj+P//fwOEwAVIUgIASiQU72JHkwkAAAAASUVORK5CYII=');background-color: transparent; overflow-x:hidden;overflow-y:hidden;display:none;background-position: 50% 50%; background-repeat: no-repeat; border-width: 0px; border-style: none; margin: 0px; border-color: white; "><span style="display:block;width:0px;"></span>open</button></div><nav style="text-align:left;bottom:0px;right:0px;left:0px;position:relative;z-index:13;display:block;float:right;overflow-x:visible;overflow-y:visible;height:5em;top:0px;"><ul style="text-align:left;font-size:0.9em;background-color: rgb(0, 0, 0); list-style: none outside none; margin: 0px; padding: 0px; "><li style="text-align:left;position:relative;float:left;vertical-align:bottom;"><a href="https://archive.is/o/udrQX/yeoman.io/learning/" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;border-width: medium; border-style: none; padding: 2.1em 1.4em; border-color: white; ">Using Yeoman</a><ul style="text-align:left;display:none;position:absolute;left:0px;background-color: rgb(0, 0, 0); top:100%;min-width:200px;list-style: none outside none; margin: 0px; padding: 0px; ">
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/learning/index.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Getting started</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/codelab/index.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Tutorial (codelab)</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/learning/resources.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Resources</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/learning/deployment.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Deployment</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/learning/faq.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>FAQ</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/learning/support.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Support</a></li></ul></li><li style="text-align:left;position:relative;float:left;vertical-align:bottom;"><a href="https://archive.is/o/udrQX/yeoman.io/generators/" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;border-width: medium; border-style: none; padding: 2.1em 1.4em; border-color: white; ">Discovering generators</a></li>
+<li style="text-align:left;position:relative;float:left;vertical-align:bottom;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/" style="text-align:left;cursor:pointer;display:block;text-decoration:none;color:rgb(90, 173, 187);font-weight:700;border-width: medium; border-style: none; padding: 2.1em 1.4em; border-color: white; ">Creating a generator</a><ul style="text-align:left;display:none;position:absolute;left:0px;background-color: rgb(0, 0, 0); top:100%;min-width:200px;list-style: none outside none; margin: 0px; padding: 0px; ">
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/index.html" style="text-align:left;cursor:pointer;display:block;text-decoration:none;white-space:nowrap;color:rgb(90, 173, 187);font-weight:700;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Getting started</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/running-context.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Running Context</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/user-interactions.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>User Interactions</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/composability.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Composability</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/dependencies.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Managing Dependencies</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/file-system.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Interacting with the file system</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/gruntfile.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Creating a Gruntfile</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/storage.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Storing user configs</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/testing.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Unit testing</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/debugging.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Debugging Generators</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/integrating-yeoman.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Integrating Yeoman in other tools</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/generator/" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Full API documentation</a></li></ul></li><li style="text-align:left;position:relative;float:left;vertical-align:bottom;"><a href="https://archive.is/o/udrQX/yeoman.io/blog/" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;border-width: medium; border-style: none; padding: 2.1em 1.4em; border-color: white; ">Blog</a></li>
+<li style="text-align:left;position:relative;float:left;vertical-align:bottom;"><a href="https://archive.is/o/udrQX/yeoman.io/contributing/" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;border-width: medium; border-style: none; padding: 2.1em 1.4em; border-color: white; ">Contributing</a><ul style="text-align:left;display:none;position:absolute;background-color: rgb(0, 0, 0); top:100%;min-width:200px;left:auto;right:0px;list-style: none outside none; margin: 0px; padding: 0px; ">
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/contributing/index.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Contributing</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/contributing/opening-issues.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>How to open an issue</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/contributing/pull-request.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>How to submit a PR</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/contributing/style-guide.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Style Guide</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/contributing/testing-guidelines.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Testing Guidelines</a></li>
+<li style="text-align:left;"><a href="https://archive.is/o/udrQX/yeoman.io/contributing/ticketing.html" style="text-align:left;cursor:pointer;display:block;color:rgb(255, 255, 255);text-decoration:none;white-space:nowrap;border-width: medium medium medium 10px; border-style: none none none solid; padding: 13px 20px; border-color: white white white rgba(221, 0, 42, 0); "><span style=""></span>Issue system overview</a></li></ul></li></ul></nav></div></header><div style="text-align:left;overflow-x:hidden;overflow-y:hidden;"><div style="text-align:left;min-height:100%;"><h2 style="font-family:'Roboto Slab', serif;background-color: rgb(90, 173, 187); line-height:1em;color:rgb(255, 255, 255);font-weight:400;text-transform:uppercase;text-align:left;font-size:2.4em;margin: 0px 0px 0.7em; padding: 0px; "><span style="position:relative;display:block;max-width:1200px;background-image:url('edcdff990e6d020e93ba1e8c5bae1bf8b9a0df1b.png');background-color:rgb(90, 173, 187);box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;background-size:auto 5em;background-position:97% 78%;background-repeat:no-repeat;margin:0px auto;padding:3.4em 5em 1.6em 0.6em">Writing Your Own Yeoman Generator</span></h2><div style="text-align:left;position:relative;max-width:1200px;padding-right:20em;box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; margin: 0px auto; "><span style="display:table;"> </span><nav style="text-align:left;display:block;max-width:25em;position:absolute;width:17em;right:0px;top:1.3em;margin: 0px; padding: 0px; "><ul style="text-align:left;list-style: none outside none; margin: 0px; padding: 0px; "><li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/index.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;position:relative;color:rgb(255, 255, 255);background-color: rgb(90, 173, 187); font-style:italic;border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Getting started<span style="top:1.05em;right:1em;height:0px;width:0px;position:absolute;pointer-events:none;display:none;border-width: 0.4em; border-style: solid; border-color: rgb(255, 255, 255) transparent transparent; "> </span></a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/running-context.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Running Context</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/user-interactions.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">User Interactions</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/composability.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Composability</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/dependencies.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Managing Dependencies</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/file-system.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Interacting with the file system</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/gruntfile.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Creating a Gruntfile</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/storage.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Storing user configs</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/testing.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Unit testing</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/debugging.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Debugging Generators</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/authoring/integrating-yeoman.html" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Integrating Yeoman in other tools</a></li>
+<li style="text-align:left;display:block;"><a href="https://archive.is/o/udrQX/yeoman.io/generator/" style="text-align:left;display:block;cursor:pointer;border-bottom-color:rgba(0, 0, 0, 0.199219);text-decoration:none;color:rgb(0, 150, 199);border-width: medium medium 1px; border-style: none none dotted; padding: 0.5em 1em; ">Full API documentation</a></li></ul></nav><article style="text-align:left;display:block;font-size:1.1em;line-height:1.6;padding: 1em 2em 1em 1.3em; "><section style="text-align:left;display:block;margin-bottom:4em;"><div style="text-align:left;margin: 0px 0px 1.3em; ">Generators are the building blocks of the Yeoman ecosystem. They're the plugins run by
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">yo</code>
+to generate files for end users.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">In reading this section, you'll learn how to create and distribute your own.</div><aside style="text-align:left;display:block;font-size:1.2em;color:rgb(90, 173, 187);font-style:italic;margin: 1.8em 0px; padding: 0px 2em; ">Note: We built a
+<a href="https://archive.is/o/udrQX/https://github.com/yeoman/generator-generator" style="text-align:left;cursor:pointer;color:rgb(0, 96, 128);">generator-generator</a>
+to help users get started with their own generator. Feel free to use it to bootstrap your own generator once you understand the below concepts.</aside><h2 style="text-align:left;font-size:1.5em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 0.83em; ">Organizing your generators</h2><h3 style="text-align:left;font-size:1.17em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 1em; ">Setting up as a node module</h3><div style="text-align:left;margin: 1em 0px 1.3em; ">A generator is, at its core, a Node.js module.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">First, create a folder within which you'll write your generator. This folder must be named
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">generator-name</code>
+(where <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">name</code>
+is the name of your generator). This is important, as Yeoman relies on the file system to find available generators.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Once inside your generator folder, create a
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">package.json</code>
+file. This file is a Node.js module manifest. You can generate this file by running <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">npm init</code>
+from your command line or by entering the following manually:</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">{</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"name"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"generator-name"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">,</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"version"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"0.1.0"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">,</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"description"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">""</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">,</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"files"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">[</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"app"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">,</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"router"</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">],</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"keywords"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">[</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"yeoman-generator"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">],</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"dependencies"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">{</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"yeoman-generator"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"^0.20.2"</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">}</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+</span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">}</span></span>
+</code></pre></div><div style="text-align:left;margin: 1em 0px 1.3em; ">The
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">name</code>
+property must be prefixed by <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">generator-</code>. The
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">keywords</code>
+property must contain <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">"yeoman-generator"</code>
+and the repo must have a description to be indexed by our <a href="https://archive.is/o/udrQX/yeoman.io/generators/" style="text-align:left;cursor:pointer;color:rgb(0, 150, 199);">generators page</a>.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">You should make sure you set the latest version of
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">yeoman-generator</code>
+as a dependency. You can do this by running: <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">npm install --save yeoman-generator</code>.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">The
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">files</code>
+property must be an array of files and directories that is used by your generator.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Add other
+<a href="https://archive.is/o/udrQX/https://docs.npmjs.com/files/package.json%23files" style="text-align:left;cursor:pointer;color:rgb(0, 150, 199);"><code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">package.json</code>
+properties</a>
+as needed.</div><h3 style="text-align:left;font-size:1.17em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 1em; ">Folder tree</h3><div style="text-align:left;margin: 1em 0px 1.3em; ">Yeoman is deeply linked to the file system and to how you structure your directory tree. Each sub-generator is contained within its own folder.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">The default generator used when you call
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">yo name</code>
+is the <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">app</code>
+generator. This must be contained within the <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">app/</code>
+directory.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Sub-generators, used when you call
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">yo name:subcommand</code>, are stored in folders named exactly like the sub command.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">In an example project, a directory tree could look like this:</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;color:rgb(255, 255, 255);">├───</span><span style="text-align:left;color:rgb(226, 137, 100);">package</span><span style="text-align:left;color:rgb(255, 255, 255);">.</span><span style="text-align:left;color:rgb(255, 255, 255);">json
+</span><span style="text-align:left;color:rgb(255, 255, 255);">├───</span><span style="text-align:left;color:rgb(255, 255, 255);">app</span><span style="text-align:left;color:rgb(255, 255, 255);">/</span><span style="text-align:left;color:rgb(255, 255, 255);">
+</span><span style="text-align:left;color:rgb(255, 255, 255);">│</span><span style="text-align:left;color:rgb(255, 255, 255);">   </span><span style="text-align:left;color:rgb(255, 255, 255);">└───</span><span style="text-align:left;color:rgb(255, 255, 255);">index</span><span style="text-align:left;color:rgb(255, 255, 255);">.</span><span style="text-align:left;color:rgb(255, 255, 255);">js
+</span><span style="text-align:left;color:rgb(255, 255, 255);">└───</span><span style="text-align:left;color:rgb(255, 255, 255);">router</span><span style="text-align:left;color:rgb(255, 255, 255);">/</span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;color:rgb(255, 255, 255);">└───</span><span style="text-align:left;color:rgb(255, 255, 255);">index</span><span style="text-align:left;color:rgb(255, 255, 255);">.</span><span style="text-align:left;color:rgb(255, 255, 255);">js</span></code></pre></div><div style="text-align:left;margin: 1em 0px 1.3em; ">This generator will expose
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">yo name</code>
+and <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">yo name:router</code>
+commands.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">You may not like keeping all your code at the root of your folder. Luckily, Yeoman allows for two different directory structures. It'll look in
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">./</code>
+and in <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">generators/</code>
+to register available generators.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">The previous example can be written as follows:</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;color:rgb(255, 255, 255);">├───</span><span style="text-align:left;color:rgb(226, 137, 100);">package</span><span style="text-align:left;color:rgb(255, 255, 255);">.</span><span style="text-align:left;color:rgb(255, 255, 255);">json
+</span><span style="text-align:left;color:rgb(255, 255, 255);">└───</span><span style="text-align:left;color:rgb(255, 255, 255);">generators</span><span style="text-align:left;color:rgb(255, 255, 255);">/</span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;color:rgb(255, 255, 255);">├───</span><span style="text-align:left;color:rgb(255, 255, 255);">app</span><span style="text-align:left;color:rgb(255, 255, 255);">/</span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;color:rgb(255, 255, 255);">│</span><span style="text-align:left;color:rgb(255, 255, 255);">   </span><span style="text-align:left;color:rgb(255, 255, 255);">└───</span><span style="text-align:left;color:rgb(255, 255, 255);">index</span><span style="text-align:left;color:rgb(255, 255, 255);">.</span><span style="text-align:left;color:rgb(255, 255, 255);">js
+    </span><span style="text-align:left;color:rgb(255, 255, 255);">└───</span><span style="text-align:left;color:rgb(255, 255, 255);">router</span><span style="text-align:left;color:rgb(255, 255, 255);">/</span><span style="text-align:left;color:rgb(255, 255, 255);">
+        </span><span style="text-align:left;color:rgb(255, 255, 255);">└───</span><span style="text-align:left;color:rgb(255, 255, 255);">index</span><span style="text-align:left;color:rgb(255, 255, 255);">.</span><span style="text-align:left;color:rgb(255, 255, 255);">js</span></code></pre></div><div style="text-align:left;margin: 1em 0px 1.3em; ">If you use this second directory structure, make sure you point the
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">files</code>
+property in your <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">package.json</code>
+at the <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">generators</code>
+folder.</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">{</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"files"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">[</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"generators/app"</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">,</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">"generators/router"</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">]</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+</span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">}</span></span>
+</code></pre></div><h2 style="text-align:left;font-size:1.5em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 0.83em; ">Extending generator</h2><div style="text-align:left;margin: 1em 0px 1.3em; ">Once you have this structure in place, it's time to write the actual generator.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Yeoman offers a base generator which you can extend to implement your own behavior. This base generator will add most of the functionalities you'd expect to ease your task.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Here's how you extend the base generator:</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;"><span style="text-align:left;color:rgb(226, 137, 100);">var</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">generators</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">=</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">require</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">(</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">'yeoman-generator'</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">);</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+
+</span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">module</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">exports</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">=</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">generators</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(137, 189, 255);">Base</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">extend</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">();</span></span>
+</code></pre></div><div style="text-align:left;margin: 1em 0px 1.3em; ">The
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">extend</code>
+method will extend the base class and allow you to provide a new prototype. This functionality comes from the <a href="https://archive.is/o/udrQX/https://github.com/SBoudrias/class-extend" style="text-align:left;cursor:pointer;color:rgb(0, 150, 199);">Class-extend</a>
+module and should be familiar if you've ever worked with Backbone.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">We assign the extended generator to
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">module.exports</code>
+to make it available to the ecosystem. This is how we <a href="https://archive.is/o/udrQX/https://nodejs.org/api/modules.html%23modules_module_exports" style="text-align:left;cursor:pointer;color:rgb(0, 150, 199);">export modules in Node.js</a>.</div><h3 style="text-align:left;font-size:1.17em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 1em; ">Overwriting the constructor</h3><div style="text-align:left;margin: 1em 0px 1.3em; ">Some generator methods can only be called inside the
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">constructor</code>
+function. These special methods may do things like set up important state controls and may not function outside of the constructor.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">To override the generator constructor, you pass a constructor function to
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">extend()</code>
+like so:</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">module</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">exports</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">=</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">generators</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(137, 189, 255);">Base</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">extend</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">({</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(174, 174, 174);font-style:italic;">// The name `constructor` is important here</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">constructor</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(226, 137, 100);">function</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">()</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">{</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(174, 174, 174);font-style:italic;">// Calling the super constructor is important so our generator is correctly set up</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">generators</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(137, 189, 255);">Base</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">apply</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">(</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(226, 137, 100);">this</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">,</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">arguments</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">);</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(174, 174, 174);font-style:italic;">// Next, add your custom code</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(226, 137, 100);">this</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">option</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">(</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">'coffee'</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">);</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(174, 174, 174);font-style:italic;">// This method adds support for a `--coffee` flag</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">}</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+</span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">});</span></span>
+</code></pre></div><h3 style="text-align:left;font-size:1.17em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 1em; ">Adding your own functionality</h3><div style="text-align:left;margin: 1em 0px 1.3em; ">Every method added to the prototype is run once the generator is called--and usually in sequence. But, as we'll see in the next section, some special method names will trigger a specific run order.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Let's add some methods:</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">module</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">exports</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">=</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">generators</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(137, 189, 255);">Base</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">extend</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">({</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">method1</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(226, 137, 100);">function</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">()</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">{</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">console</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">log</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">(</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">'method 1 just ran'</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">);</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">},</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">method2</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">:</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(226, 137, 100);">function</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">()</span></span><span style="text-align:left;color:rgb(255, 255, 255);"> </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">{</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+    </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">console</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">.</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">log</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">(</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(101, 176, 66);">'method 2 just ran'</span></span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">);</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+  </span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">}</span></span><span style="text-align:left;color:rgb(255, 255, 255);">
+</span><span style="text-align:left;"><span style="text-align:left;color:rgb(255, 255, 255);">});</span></span>
+</code></pre></div><div style="text-align:left;margin: 1em 0px 1.3em; ">When we run the generator later, you'll see these lines logged to the console.</div><h2 style="text-align:left;font-size:1.5em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 0.83em; ">Running the generator</h2><div style="text-align:left;margin: 1em 0px 1.3em; ">At this point, you have a working generator. The next logical step would be to run it and see if it works.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Since you're developing the generator locally, it's not yet available as a global npm module. A global module may be created and symlinked to a local one, using npm. Here's what you'll want to do:</div><div style="text-align:left;margin: 1em 0px 1.3em; ">On the command line, from the root of your generator project (in the
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">generator-name/</code>
+folder), type:</div><div style="text-align:left;"><pre style="text-align:left;font-family:monospace;white-space:pre-wrap;font-size:0.95em;background-color: rgb(46, 46, 46); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;overflow-x:auto;overflow-y:auto;word-wrap:normal;margin: 1em 0px 1.3em; padding: 1em; "><code style="text-align:left;font-family:monospace;line-height:1;border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;font-size:1em;white-space:pre;background-color: transparent; border-width: medium; border-style: none; padding: 0px; border-color: white; "><span style="text-align:left;color:rgb(255, 255, 255);">npm link</span></code></pre></div><div style="text-align:left;margin: 1em 0px 1.3em; ">That will install your project dependencies and symlink a global module to your local file. After npm is done, you'll be able to call
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">yo name</code>
+and you should see the <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">console.log</code>, defined earlier, rendered in the terminal. Congratulations, you just built your first generator!</div><h3 style="text-align:left;font-size:1.17em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 1em; ">Finding the project root</h3><div style="text-align:left;margin: 1em 0px 1.3em; ">While running a generator, Yeoman will try to figure some things out based on the context of the folder it's running from.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">Most importantly, Yeoman searches the directory tree for a
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">.yo-rc.json</code>
+file. If found, it considers the location of the file as the root of the project. Behind the scenes, Yeoman will change the current directory to the <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">.yo-rc.json</code>
+file location and run the requested generator there.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">The Storage module creates the
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">.yo-rc.json</code>
+file. Calling <code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">this.config.save()</code>
+from a generator for the first time will create the file.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">So, if your generator is not running in your current working directory, make sure you don't have a
+<code style="text-align:left;font-family:monospace;font-size:1em;background-color: rgb(248, 248, 248); line-height:1;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;border-width: 1px; border-style: solid; padding: 0.2em 0.4em; border-color: rgb(221, 221, 221); ">.yo-rc.json</code>
+somewhere up the directory tree.</div><h2 style="text-align:left;font-size:1.5em;font-family:'Roboto Slab', serif;position:relative;margin: 2em 0px 0.83em; ">Where to go from here?</h2><div style="text-align:left;margin: 1em 0px 1.3em; ">After reading this, you should be able to create a local generator and run it.</div><div style="text-align:left;margin: 1em 0px 1.3em; ">If this is your first time writing a generator, you should definitely read the next section on
+<a href="https://archive.is/o/udrQX/yeoman.io/authoring/running-context.html" style="text-align:left;cursor:pointer;color:rgb(0, 150, 199);">running context and the run loop</a>. This section is vital to understanding the context in which your generator will run, and to ensure that it will compose well with other generators in the Yeoman ecosystem. The other sections of the documentation will present functionality available within the Yeoman core to help you achieve your goals.</div><div style="text-align:left;margin-top:2em;font-size:0.9em;background-color: rgb(239, 239, 239); border-top-left-radius:0.35em 0.35em;border-top-right-radius:0.35em 0.35em;border-bottom-right-radius:0.35em 0.35em;border-bottom-left-radius:0.35em 0.35em;border-width: 1px; border-style: solid; padding: 0.5em 1em; border-color: rgb(221, 221, 221); ">Found a typo? An unclear example? Help us improve our documentation by forking and sending your fixes and suggestions.
+<a href="https://archive.is/o/udrQX/https://github.com/yeoman/yeoman.github.io/blob/source/app/authoring/index.md" style="text-align:left;cursor:pointer;color:rgb(0, 150, 199);">Improve this Page!</a></div></section></article><span style="display:table;clear:both;"> </span></div></div><footer style="text-align:left;display:block;background-color: rgb(0, 0, 0); color:rgb(255, 255, 255);padding: 20px; "><div style="text-align:left;"><div style="text-align:left;display:block;position:relative;padding-left:160px;"><div style="text-align:left;"><img alt="Stickers!" src="5aee5e1fc71534f4b4fdfff30162198d844ff13f.png" style="height:294px;width:190px;text-align:left;vertical-align:middle;position:absolute;left:0px;top:-100px;border-width: 0px; border-style: none; border-color: white; "/></div><div style="text-align:left;position:relative;z-index:1;"><a href="https://archive.is/o/udrQX/https://www.stickermule.com/user/1070704235/stickers" style="text-align:left;cursor:pointer;color:rgb(255, 255, 255);text-decoration:none;">Show your love for
+<strong style="text-align:left;font-weight:700;">Yeoman</strong>,<br style="text-align:left;"/>
+wear our <strong style="text-align:left;font-weight:700;">sticker</strong>!</a></div></div></div><ul style="text-align:center;list-style: none outside none; margin: 0px; padding: 0px; "><li style="display:inline-block;vertical-align:middle;margin: 3px; "><a href="https://archive.is/o/udrQX/https://plus.google.com/101063139999404044459/posts" style="cursor:pointer;display:inline-block;"><img alt="Google+" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTg0IDEwMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiPjxwYXRoIGQ9Ik0wIDgxOHEwLTg3IDg5LTE1NXQyMTUtNjhoNTRxLTQyLTQwLTQyLTg2IDAtMjkgMTYtNTgtMTAgMS0yOSAxLTEwNCAwLTE3MC02NVQ2NyAyMjdxMC05MSA4Mi0xNTlUMzM2IDBoMzEwbC02OSA1MGgtOThxNDcgMTggNzMuNSA2OFQ1NzkgMjI5cTAgOTMtODggMTYyLTM3IDI5LTQ4IDQ2dC0xMSA0MnEwIDE5IDI3IDQ4dDU0IDQ5cTYxIDQzIDg0LjUgODhUNjIxIDc3N3EwIDkwLTgyIDE1Ni41VDMxNyAxMDAwcS0xMzMgMC0yMjUtNTBUMCA4MTh6bTExMi0zM3EwIDY5IDU4LjUgMTE3LjVUMzE2IDk1MXExMTkgMCAxNzIuNS00NFQ1NDIgNzkwcTAtMTktNC0zMi0zLTExLTctMjAuNXQtMTItMTktMTQtMTYtMTkuNS0xNi41LTIwLjUtMTUtMjUtMTcuNS0yNi0xNy41cS0zOS0xMi03Ny0xMi05MC0xLTE1Ny41IDQ3VDExMiA3ODV6bTY2LTU1OXExMSA3OSA2MC41IDEzNlQzNDggNDIwcTU5IDIgOTQtNTJ0MjUtMTMzLTU5LjUtMTM0VDI5OCA0NHQtOTUgNTEtMjUgMTMxem01NTUgMjR2LTUwaDIwMFYwaDUwdjIwMGgyMDF2NTBIOTgzdjIwMWgtNTBWMjUwSDczM3oiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" style="vertical-align:middle;width:30px;border-width: 0px; border-style: none; border-color: white; "/></a></li>
+<li style="display:inline-block;vertical-align:middle;margin: 3px; "><a href="https://archive.is/o/udrQX/https://twitter.com/yeoman" style="cursor:pointer;display:inline-block;"><img alt="Twitter" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OS4yNjMwMDEgNDAuMDM0MDAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWluWU1pbiBtZWV0Ij48cGF0aCBkPSJNNDkuMjYzIDQuNzM5YTIwLjExIDIwLjExIDAgMCAxLTUuODA1IDEuNTkxQTEwLjEyNSAxMC4xMjUgMCAwIDAgNDcuOTAyLjczOGEyMC4yMzIgMjAuMjMyIDAgMCAxLTYuNDE4IDIuNDU0QTEwLjA5MyAxMC4wOTMgMCAwIDAgMzQuMTA3IDBjLTUuNTgxIDAtMTAuMTA2IDQuNTI1LTEwLjEwNiAxMC4xMDcgMCAuNzkxLjA4OSAxLjU2Mi4yNjIgMi4zMDMtOC40LS40MjItMTUuODQ4LTQuNDQ1LTIwLjgzMy0xMC41NmExMC4wNTUgMTAuMDU1IDAgMCAwLTEuMzY4IDUuMDgyYzAgMy41MDYgMS43ODQgNi42IDQuNDk2IDguNDEyYTEwLjA3OCAxMC4wNzggMCAwIDEtNC41NzgtMS4yNjVsLS4wMDEuMTI4YzAgNC44OTYgMy40ODQgOC45OCA4LjEwOCA5LjkxYTEwLjE2MiAxMC4xNjIgMCAwIDEtNC41NjUuMTcyYzEuMjg3IDQuMDE1IDUuMDE5IDYuOTM4IDkuNDQxIDcuMDE5YTIwLjI3NiAyMC4yNzYgMCAwIDEtMTIuNTUyIDQuMzI3Yy0uODE1IDAtMS42Mi0uMDQ4LTIuNDExLS4xNDJhMjguNiAyOC42IDAgMCAwIDE1LjQ5MyA0LjU0MWMxOC41OTEgMCAyOC43NTYtMTUuNCAyOC43NTYtMjguNzU2IDAtLjQzOC0uMDA5LS44NzUtLjAyOC0xLjMwOWEyMC40NyAyMC40NyAwIDAgMCA1LjA0Mi01LjIzeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" style="vertical-align:middle;width:30px;border-width: 0px; border-style: none; border-color: white; "/></a></li>
+<li style="display:inline-block;vertical-align:middle;margin: 3px; "><a href="https://archive.is/o/udrQX/https://github.com/yeoman/yeoman" style="cursor:pointer;display:inline-block;"><img alt="Github" src="1094edd71311cdfcbcb9ce620f8048f0a0aa93b7.svg" style="vertical-align:middle;width:30px;border-width: 0px; border-style: none; border-color: white; "/></a></li>
+<li style="display:inline-block;vertical-align:middle;margin: 3px; "><a href="https://archive.is/o/udrQX/yeoman.io/blog/atom.xml" style="cursor:pointer;display:inline-block;"><img alt="Feed" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDEwMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiPjxwYXRoIGQ9Ik0wIDg2NnEwLTU1IDM5LTk0dDk0LTM5IDk0IDM5IDM5IDk0cTAgNTYtMzkgOTQuNVQxMzMgOTk5dC05NC0zOS0zOS05NHptMC0zMzVWMzQwcTE3OSAwIDMzMSA4OC41VDU3MS41IDY2OXQ4OC41IDMzMUg0NjhxMC0xOTQtMTM3LTMzMVExOTMgNTMxIDAgNTMxem0wLTMzOVYwcTIwMyAwIDM4OCA3OS41VDcwNyAyOTN0MjEzLjUgMzE5IDc5LjUgMzg4SDgwOHEwLTE2NC02NC0zMTRUNTcxLjUgNDI4dC0yNTgtMTcyVDAgMTkyeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" style="vertical-align:middle;width:30px;border-width: 0px; border-style: none; border-color: white; "/></a></li>
+<li style="display:inline-block;vertical-align:middle;margin: 3px; "></li>
+<li style="display:inline-block;vertical-align:middle;margin: 3px; "><a href="https://archive.is/o/udrQX/yeoman.io/generator/" style="cursor:pointer;border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;text-decoration:none;text-shadow:rgba(0, 0, 0, 0.496094) 1px 1px 3px;background-color: rgb(90, 173, 187); color:rgb(255, 255, 255);display:inline-block;padding: 0.8em 1.2em; ">API</a></li>
+<li style="display:inline-block;vertical-align:middle;margin: 3px; "><a href="https://archive.is/o/udrQX/https://github.com/yeoman/yeoman.github.io/blob/source/app/authoring/index.md" title="Edit this page on Github to help improve the site" style="cursor:pointer;background-color: rgb(51, 51, 51); color:rgb(204, 204, 204);border-top-left-radius:3px 3px;border-top-right-radius:3px 3px;border-bottom-right-radius:3px 3px;border-bottom-left-radius:3px 3px;text-decoration:none;text-shadow:rgba(0, 0, 0, 0.496094) 1px 1px 3px;display:inline-block;padding: 0.8em 1.2em; ">Improve this page</a></li></ul></footer></div></div></div></div></body></html>
