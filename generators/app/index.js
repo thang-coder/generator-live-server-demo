@@ -12,8 +12,8 @@ module.exports = yeoman.Base.extend({
 
     var prompts = [{
       type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
+      name: 'shouldLaunchLiveServer',
+      message: 'Would you like to launch live-server at the end?',
       default: true
     }];
 

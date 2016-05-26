@@ -40,3 +40,14 @@ Coding time:
 - Inspect and modify the dependent package list in `package.json` file
 - Write documentation in `README.md` file
 
+
+### Step 4
+Run the new generator
+
+```
+npm link
+mkdir sandbox
+cd sandbox
+yo live-server-demo
+rm -rf ../sandbox
+```
